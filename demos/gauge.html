@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仪表盘</title>
+</head>
+<style>
+</style>
+
+<body>
+    <canvas id="aaa" width="200px" height="200px"></canvas>
+    <canvas id="bbb" width="200px" height="200px"></canvas>
+    <canvas id="ccc" width="200px" height="200px"></canvas>
+    <a href="../src/gauge/gauge.js">js文件</a>
+
+
+    <script src="../src/gauge/gauge.js"></script>
+    <script>
+        let canvas1 = new Gauge({
+            el: 'aaa',
+            maxLineNums: 24, //最大刻度
+            unitLineNums: 5, //单位刻度内线条数
+            data: 24, //数据
+            title: '标题1',
+            textBottom: '下面的文字a',
+            isAnimation:true
+        })
+        let canvas2 = new Gauge({
+            el: 'bbb',
+            maxLineNums: 124, //最大刻度
+            unitLineNums: 2, //单位刻度内线条数
+            data: 102, //数据
+            title: '标题2',
+            textBottom: '下面的文字b',
+            isAnimation:true
+        })
+        let canvas3 = new Gauge({
+            el: 'ccc',
+            data: 124, //数据 
+            maxLineNums: 224, //最大刻度
+            title: '标题3',
+            textBottom: '下面的文字c',
+            isAnimation:false //关闭动画，默认关闭
+        })
+    </script>
+</body>
+
+</html>
