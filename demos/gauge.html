@@ -8,42 +8,91 @@
     <title>仪表盘</title>
 </head>
 <style>
+    body>div {
+        display: flex;
+        border-bottom: 1px #eee solid;
+    }
 </style>
 
 <body>
-    <canvas id="aaa" width="200px" height="200px"></canvas>
-    <canvas id="bbb" width="200px" height="200px"></canvas>
-    <canvas id="ccc" width="200px" height="200px"></canvas>
+    <div>
+        <canvas id="aaa" width="200px" height="200px"></canvas>
+        <code>
+            <pre>
+                let canvas1 = new Gauge({
+                    el: 'aaa',  //canvas的id（在标签内指定高宽）
+                    maxLineNums: 24, //最大刻度
+                    unitLineNums: 5, //单位刻度内线条数
+                    data: 24, //数据
+                    title: '标题1', 
+                    textBottom: '下面的文字a',
+                    isAnimation: true //关闭动画，默认关闭
+                })
+            </pre>
+        </code>
+    </div>
+
+    <div>
+        <canvas id="bbb" width="200px" height="200px"></canvas>
+        <code>
+            <pre>
+                let canvas2 = new Gauge({
+                    el: 'bbb',
+                    maxLineNums: 124, 
+                    unitLineNums: 2, 
+                    data: 102, 
+                    title: '标题2',
+                    textBottom: '下面的文字b',
+                    isAnimation: true 
+                })        
+            </pre>
+        </code>
+
+    </div>
+    <div>
+        <canvas id="ccc" width="200px" height="200px"></canvas>
+        <code>
+            <pre>
+                let canvas3 = new Gauge({
+                    el: 'ccc',
+                    data: 124, 
+                    maxLineNums: 224, 
+                    title: '标题3',
+                    textBottom: '下面的文字c',
+                    isAnimation: false 
+                })
+            </pre>
+        </code>
+
+    </div>
     <a href="../src/gauge/gauge.js" download="gauge.js">下载js文件</a>
-
-
     <script src="../src/gauge/gauge.js"></script>
     <script>
         let canvas1 = new Gauge({
-            el: 'aaa',
+            el: 'aaa',  //canvas的id（在标签内指定高宽）
             maxLineNums: 24, //最大刻度
             unitLineNums: 5, //单位刻度内线条数
             data: 24, //数据
             title: '标题1',
             textBottom: '下面的文字a',
-            isAnimation:true
+            isAnimation: true //关闭动画，默认关闭
         })
         let canvas2 = new Gauge({
             el: 'bbb',
-            maxLineNums: 124, //最大刻度
-            unitLineNums: 2, //单位刻度内线条数
-            data: 102, //数据
+            maxLineNums: 124,
+            unitLineNums: 2,
+            data: 102,
             title: '标题2',
-            textBottom: '下面的文字b',
-            isAnimation:true
+            textBottom: '最大值：124',
+            isAnimation: true
         })
         let canvas3 = new Gauge({
             el: 'ccc',
-            data: 124, //数据 
-            maxLineNums: 224, //最大刻度
+            data: 124,
+            maxLineNums: 224,
             title: '标题3',
             textBottom: '下面的文字c',
-            isAnimation:false //关闭动画，默认关闭
+            isAnimation: false
         })
     </script>
 </body>

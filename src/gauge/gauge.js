@@ -13,11 +13,10 @@ function Gauge(c) {
 
     var canvas = document.getElementById(this.el),
         ctx = canvas.getContext('2d'),
-        cWidth = canvas.width, //300
-        cHeight = canvas.height; //200
+        cWidth = canvas.width,
+        cHeight = canvas.height;
     ctx.textAlign = "center"
 
-    // 动画计数
     let animationNum = 0
     let startAngel = 0.75 * Math.PI
     let r = 0.4 * canvas.width
@@ -29,17 +28,17 @@ function Gauge(c) {
         if (this.title !== undefined) {
             ctx.fillStyle = '#777';
             ctx.font = "18px serif";
-            ctx.fillText(this.title, cWidth / 2, cHeight * 0.4);
+            ctx.fillText(this.title, cWidth / 2, cHeight * 0.4); //大标题的颜色、字号、位置
         }
         if (this.textBottom !== undefined) {
             ctx.font = "12px serif";
-            ctx.fillText(this.textBottom, cWidth / 2, cHeight * 0.8);
+            ctx.fillText(this.textBottom, cWidth / 2, cHeight * 0.8); //底部文字的颜色（与大标题已知，可自行增加）、字号、位置
         }
 
 
         ctx.font = "28px serif";
-        ctx.fillStyle = gradientColor[animationNum];
-        ctx.fillText(animationNum, cWidth / 2, cHeight * 0.55);
+        ctx.fillStyle = gradientColor[animationNum]; //中间数据的颜色（与指针颜色一致，可自行更改）
+        ctx.fillText(animationNum, cWidth / 2, cHeight * 0.55); //中间数据的位置
 
         for (var i = 1; i <= this.maxLineNums; i++) {
             let currentAngle = startAngel + i * (1.5 * Math.PI / this.maxLineNums)
@@ -54,8 +53,7 @@ function Gauge(c) {
             }
             ctx.save();
             ctx.beginPath();
-            ctx.lineWidth = 1;
-            // 主线
+            ctx.lineWidth = 1; //单位刻度线条宽度，推荐1~2
 
             ctx.strokeStyle = (i > animationNum) ? '#cccccc' : gradientColor[i];
             ctx.moveTo(Math.cos(currentAngle) * r * 0.75 + cWidth / 2, Math.sin(currentAngle) * r * 0.75 + cHeight / 2);
@@ -73,14 +71,14 @@ function Gauge(c) {
     if (this.isAnimation) {
         let animation = () => {
             draw()
-            animationNum ++
+            animationNum++
 
             if (animationNum <= c.data) {
                 requestAnimationFrame(animation)
             }
         }
         requestAnimationFrame(animation);
-    }else{
+    } else {
         animationNum = this.data
         draw()
     }
@@ -89,7 +87,7 @@ function Gauge(c) {
     function drawSmallLine(currentAngle) {
         ctx.save();
         ctx.beginPath();
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 1; //单位刻度内线条宽度，推荐1~2
         ctx.moveTo(Math.cos(currentAngle) * r * 0.75 + cWidth / 2, Math.sin(currentAngle) * r * 0.75 + cHeight / 2);
         ctx.lineTo(Math.cos(currentAngle) * r + cWidth / 2, Math.sin(currentAngle) * r + cHeight / 2);
         ctx.stroke();
