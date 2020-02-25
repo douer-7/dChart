@@ -11,7 +11,7 @@ function Gauge(c) {
     let gradientColor = gradientColors('#17deea', '#e97f03', this.maxLineNums + 1)
 
 
-    var canvas = document.getElementById(this.el),
+    let canvas = document.getElementById(this.el),
         ctx = canvas.getContext('2d'),
         cWidth = canvas.width,
         cHeight = canvas.height;
@@ -40,7 +40,7 @@ function Gauge(c) {
         ctx.fillStyle = gradientColor[animationNum]; //中间数据的颜色（与指针颜色一致，可自行更改）
         ctx.fillText(animationNum, cWidth / 2, cHeight * 0.55); //中间数据的位置
 
-        for (var i = 1; i <= this.maxLineNums; i++) {
+        for (let i = 1; i <= this.maxLineNums; i++) {
             let currentAngle = startAngel + i * (1.5 * Math.PI / this.maxLineNums)
 
             if (i != 0) {
@@ -98,10 +98,10 @@ function Gauge(c) {
 
 
 
-var gradientColors = function (start, end, steps, gamma) {
+let gradientColors = function (start, end, steps, gamma) {
     // 颜色渐变算法
     // convert #hex notation to rgb array
-    var parseColor = function (hexStr) {
+    let parseColor = function (hexStr) {
         return hexStr.length === 4 ? hexStr.substr(1).split('').map(function (s) {
             return 0x11 * parseInt(s, 16);
         }) : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(function (s) {
@@ -110,14 +110,14 @@ var gradientColors = function (start, end, steps, gamma) {
     };
 
     // zero-pad 1 digit to 2
-    var pad = function (s) {
+    let pad = function (s) {
         return (s.length === 1) ? '0' + s : s;
     };
 
-    var i, j, ms, me, output = [],
+    let i, j, ms, me, output = [],
         so = [];
     gamma = gamma || 1;
-    var normalize = function (channel) {
+    let normalize = function (channel) {
         return Math.pow(channel / 255, gamma);
     };
     start = parseColor(start).map(normalize);
