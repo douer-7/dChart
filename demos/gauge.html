@@ -11,10 +11,17 @@
     body>div {
         display: flex;
         border-bottom: 1px #eee solid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    pre {
+        width: 500px;
     }
 </style>
 
 <body>
+
     <div>
         <canvas id="aaa" width="200px" height="200px"></canvas>
         <code>
@@ -50,7 +57,7 @@
 
     </div>
     <div>
-        <canvas id="ccc" width="200px" height="200px"></canvas>
+        <canvas id="ccc" width="400px" height="400px"></canvas>
         <code>
             <pre>
                 let canvas3 = new Gauge({
@@ -65,7 +72,10 @@
         </code>
 
     </div>
-    <a href="../src/gauge/gauge.js" download="gauge.js">下载js文件</a>
+    <div>
+        <a href="../src/gauge/gauge.js" download="gauge.js">下载js文件</a>
+    </div>
+
     <script src="../src/gauge/gauge.js"></script>
     <script>
         let canvas1 = new Gauge({
