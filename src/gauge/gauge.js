@@ -33,7 +33,7 @@ function Gauge(c) {
         }
         if (this.textBottom !== undefined) {
             ctx.font = "12px serif";
-            ctx.fillText(this.textBottom, cWidth / 2, cHeight * 0.8); //底部文字的颜色（与大标题已知，可自行增加）、字号、位置
+            ctx.fillText(this.textBottom, cWidth / 2, cHeight * 0.8); //底部文字的颜色（与大标题一致，可自行增加）、字号、位置
         }
 
 
@@ -44,13 +44,11 @@ function Gauge(c) {
         for (let i = 1; i <= this.maxLineNums; i++) {
             let currentAngle = startAngel + i * (1.5 * Math.PI / this.maxLineNums)
 
-            if (i != 0) {
-                let angle = startAngel + (i - 1) * (1.5 * Math.PI / this.maxLineNums)
-                for (let j = 0; j < this.unitLineNums; j++) {
-                    ctx.strokeStyle = (i > animationData) ? '#cccccc' : gradientColor[i];
-                    drawSmallLine(angle)
-                    angle = angle + 1.5 * Math.PI / (this.maxLineNums * this.unitLineNums)
-                }
+            let previousAngle = startAngel + (i - 1) * (1.5 * Math.PI / this.maxLineNums)
+            for (let j = 0; j < this.unitLineNums; j++) {
+                ctx.strokeStyle = (i > animationData) ? '#cccccc' : gradientColor[i];
+                drawSmallLine(previousAngle)
+                previousAngle = previousAngle + 1.5 * Math.PI / (this.maxLineNums * this.unitLineNums)
             }
             ctx.save();
             ctx.beginPath();
