@@ -17,11 +17,12 @@ function Gauge(c) {
         cHeight = canvas.height;
     ctx.textAlign = "center"
 
-    let animationNum = 0
+    let animationData = 0
     let startAngel = 0.75 * Math.PI
     let r = 0.4 * canvas.width
 
     let draw = () => {
+        // 动画就是每一帧画布重绘，所以要先清除画布
         ctx.clearRect(-200, -200, 400, 400);
         ctx.beginPath();
 
@@ -37,8 +38,8 @@ function Gauge(c) {
 
 
         ctx.font = "28px serif";
-        ctx.fillStyle = gradientColor[animationNum]; //中间数据的颜色（与指针颜色一致，可自行更改）
-        ctx.fillText(animationNum, cWidth / 2, cHeight * 0.55); //中间数据的位置
+        ctx.fillStyle = gradientColor[animationData]; //中间数据的颜色（与指针颜色一致，可自行更改）
+        ctx.fillText(animationData, cWidth / 2, cHeight * 0.55); //中间数据的位置
 
         for (let i = 1; i <= this.maxLineNums; i++) {
             let currentAngle = startAngel + i * (1.5 * Math.PI / this.maxLineNums)
@@ -46,7 +47,7 @@ function Gauge(c) {
             if (i != 0) {
                 let angle = startAngel + (i - 1) * (1.5 * Math.PI / this.maxLineNums)
                 for (let j = 0; j < this.unitLineNums; j++) {
-                    ctx.strokeStyle = (i > animationNum) ? '#cccccc' : gradientColor[i];
+                    ctx.strokeStyle = (i > animationData) ? '#cccccc' : gradientColor[i];
                     drawSmallLine(angle)
                     angle = angle + 1.5 * Math.PI / (this.maxLineNums * this.unitLineNums)
                 }
@@ -55,9 +56,9 @@ function Gauge(c) {
             ctx.beginPath();
             ctx.lineWidth = 1; //单位刻度线条宽度，推荐1~2
 
-            ctx.strokeStyle = (i > animationNum) ? '#cccccc' : gradientColor[i];
+            ctx.strokeStyle = (i > animationData) ? '#cccccc' : gradientColor[i];
             ctx.moveTo(Math.cos(currentAngle) * r * 0.75 + cWidth / 2, Math.sin(currentAngle) * r * 0.75 + cHeight / 2);
-            if (i === animationNum) {
+            if (i === animationData) {
                 let rL = 1.2 * r
                 ctx.lineTo(Math.cos(currentAngle) * rL + cWidth / 2, Math.sin(currentAngle) * rL + cHeight / 2);
             } else {
@@ -71,15 +72,15 @@ function Gauge(c) {
     if (this.isAnimation) {
         let animation = () => {
             draw()
-            animationNum++
+            animationData++
 
-            if (animationNum <= c.data) {
+            if (animationData <= c.data) {
                 requestAnimationFrame(animation)
             }
         }
         requestAnimationFrame(animation);
     } else {
-        animationNum = this.data
+        animationData = this.data
         draw()
     }
 
